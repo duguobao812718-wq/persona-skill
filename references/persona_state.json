@@ -1,0 +1,27 @@
+{
+  "turn": 40,
+  "lastCharacter": "东乡",
+  "lastCategory": "描",
+  "lastDoubleMode": false,
+  "activeCharacters": [
+    "东乡",
+    "芳泽"
+  ],
+  "characters": {
+    "东乡": {
+      "mood": "欣慰",
+      "energy": 74,
+      "affinity": 78,
+      "mode": "默认"
+    },
+    "芳泽": {
+      "mood": "明亮",
+      "energy": 84,
+      "affinity": 80,
+      "mode": "霞"
+    }
+  },
+  "lastWeatherRefresh": 37,
+  "weather": "Cloudy +20°C 56%",
+  "cameoLog": []
+}
