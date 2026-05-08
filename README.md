@@ -191,6 +191,100 @@ npx skills add duguobao812718-wq/persona-skill -g -y
 
 ---
 
+## 🔧 Agent 兼容性
+
+Persona skill 基于标准 Markdown + JSON，理论上支持所有支持 skills 的 AI agent。
+
+### 已测试的 Agent
+
+| Agent | 状态 | 备注 |
+|-------|------|------|
+| Claude Code | ✅ 完全支持 | 原生开发平台 |
+| Cursor | ✅ 支持 | 需要配置 skills 路径 |
+| Windsurf | ✅ 支持 | 需要配置 skills 路径 |
+| Copilot | ⚠️ 部分支持 | 部分工具调用可能受限 |
+| OpenCode | ⚠️ 部分支持 | 需要手动适配 |
+| Codex | ⚠️ 部分支持 | 需要手动适配 |
+| Aider | ⚠️ 部分支持 | 需要手动适配 |
+
+### 适配指南
+
+如果你使用非 Claude Code 的 agent，可能需要调整以下内容：
+
+#### 1. 时间获取
+
+原命令（Bash）：
+```bash
+date "+%Y-%m-%d %H:%M %A"
+```
+
+替代方案：
+- 使用 agent 内置的时间函数
+- 或直接在对话中询问当前时间
+
+#### 2. 天气获取
+
+原命令（Bash + curl）：
+```bash
+curl -s "wttr.in/Wuhan?format=%C+%t+%h" --max-time 5
+```
+
+替代方案：
+- 使用 agent 内置的网络请求功能
+- 或跳过天气功能（不影响核心体验）
+
+#### 3. 状态文件路径
+
+原路径：`references/persona_state.json`
+
+适配方法：
+- 确保 agent 可以读写项目目录下的 JSON 文件
+- 如果路径不同，修改 SKILL.md 中的路径引用
+
+#### 4. 文件读写
+
+Persona 需要读写以下文件：
+- `references/persona_state.json` — 角色状态
+- `references/EXPRESSION_LIB.md` — 表情库
+- `references/characters/*.md` — 角色档案
+
+确保 agent 有文件读写权限。
+
+### 快速适配步骤
+
+1. **安装 skill**：
+   ```bash
+   npx skills add duguobao812718-wq/persona-skill -g -y
+   ```
+
+2. **检查安装路径**：
+   - Claude Code: `~/.claude/skills/persona/`
+   - 其他 agent: 查看 agent 的 skills 配置
+
+3. **测试基本功能**：
+   - 输入 `/persona` 看是否能激活
+   - 检查场景卡是否正常生成
+
+4. **如遇问题**：
+   - 查看 agent 的文档，了解 skills 支持情况
+   - 在 GitHub Issues 反馈，我们会尽力适配
+
+### 自定义适配
+
+如果需要为特定 agent 创建专属版本：
+
+1. Fork 本仓库
+2. 修改 `SKILL.md` 中的工具调用方式
+3. 提交 PR 或发布到你的仓库
+
+---
+
+## 🤝 贡献
+
+欢迎提交 PR 帮助适配更多 agent！
+
+---
+
 ## 🎪 社区与反馈
 
 - **GitHub**：[duguobao812718-wq/persona-skill](https://github.com/duguobao812718-wq/persona-skill)
